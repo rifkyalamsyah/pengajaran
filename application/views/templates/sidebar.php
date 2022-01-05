@@ -42,13 +42,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('C_dokumentasirps'); ?>" class="nav-link">
+                                    <a href="<?= base_url('C_dokumentasirps'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'C_dokumentasirps') echo 'active' ?>">
                                         <i class="fas fa-book nav-icon"></i>
                                         <p>Dokumentasi RPS</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('C_soalujian'); ?>" class="nav-link">
+                                    <a href="<?= base_url('C_soalujian'); ?>" class="nav-link <?php if ($this->uri->segment(1) == 'C_soalujian') echo 'active' ?>">
                                         <i class="fas fa-file-alt nav-icon"></i>
                                         <p>Soal Ujian</p>
                                     </a>

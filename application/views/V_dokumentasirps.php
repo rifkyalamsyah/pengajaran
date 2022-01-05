@@ -86,7 +86,7 @@
                         <td><?= $doc->dokumen ?></td>
                         <td>
                             <button data-toggle="modal" data-target="#edit<?= $doc->id_dokumentasirps ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
-                            <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                            <a href="<?= base_url('c_dokumentasirps/delete/' . $doc->id_dokumentasirps) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
