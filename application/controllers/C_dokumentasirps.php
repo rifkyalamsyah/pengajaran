@@ -46,8 +46,9 @@ class C_dokumentasirps extends CI_Controller
                 'dokumen' => $this->input->post('dokumen')
             );
 
-            // masukan data ke tabel
+            // Kirim data ke model
             $this->M_dokumentasirps->insert_data($data, 'dokumentasirps_tbl');
+            // flashdata
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data <strong>Berhasil</strong> Ditambahkan!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
