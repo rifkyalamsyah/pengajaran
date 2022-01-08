@@ -4,61 +4,12 @@
 <div class="card">
     <div class="card-header">
         <a href="<?= base_url('C_dokumentasirps/tambah') ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Data</a>
+
         <!-- Button trigger modal -->
-        <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-1">
             Tambah Data
-        </button> -->
+        </button>
 
-        <!-- Modal -->
-        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Tambah Data </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="C_dokumentasirps/tambah_aksi" method="POST">
-                            <div class="form-group">
-                                <label for="">Nama Matakuliah</label>
-                                <input type="Text" class="form-control" name="nama_matakuliah"  placeholder="Nama Matakuliah">
-                                <?= form_error('nama_matakuliah', '<div class="text-small text-danger">', '</div>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Kode Matakuliah</label>
-                                <input type="Text" class="form-control"  placeholder="Kode Matakuliah">
-                                <?= form_error('kode_matakuliah', '<div class="text-small text-danger">', '</div>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Semester</label>
-                                <select class="form-control">
-                                    <option>Ganjil</option>
-                                    <option>Genap</option>
-                                </select>
-                                <?= form_error('semester', '<div class="text-small text-danger">', '</div>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Bobot SKS</label>
-                                <select class="form-control">
-                                    <option>2 SKS</option>
-                                    <option>4 SKS</option>
-                                </select>
-                                <?= form_error('bobot_sks', '<div class="text-small text-danger">', '</div>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Upload Dokumen</label> <br>
-                                <input type="file" id="exampleInputFile">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="reset" class="btn btn-default"><i class="fa fa-trash"></i> Reset</button>
-                                <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div> -->
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -94,6 +45,65 @@
         </table>
     </div>
 </div>
+
+
+<!-- Modal Tambah data -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal-1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Form Tambah Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php echo form_open_multipart('C_dokumentasirps/add_data');  ?>
+                <div class="form-group">
+                    <label for="">Nama Matakuliah</label>
+                    <input type="Text" class="form-control" name="nama_matakuliah" placeholder="Masukan Nama Matakuliah">
+                    <?= form_error('nama_matakuliah', '<div class="text-small text-danger">', '</div>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Kode Matakuliah</label>
+                    <input type="Text" class="form-control" name="kode_matakuliah" placeholder="Masukan Kode Matakuliah">
+                    <?= form_error('kode_matakuliah', '<div class="text-small text-danger">', '</div>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Semester</label>
+                    <select class="form-control" name="semester">
+                        <option disabled selected>Pilih Semester</option>
+                        <option value="Ganjil">Ganjil</option>
+                        <option value="Genap">Genap</option>
+                    </select>
+                    <?= form_error('semester', '<div class="text-small text-danger">', '</div>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Bobot SKS</label>
+                    <select class="form-control" name="bobot_sks">
+                        <option disabled selected>Pilih Bobot SKS</option>
+                        <option value="2 SKS">2 SKS</option>
+                        <option value="4 SKS">4 SKS</option>
+                    </select>
+                    <?= form_error('bobot_sks', '<div class="text-small text-danger">', '</div>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Upload Dokumen</label> <br>
+                    <input type="file" name="dokumen" id="exampleInputFile" class="form-control">
+                </div>
+                <!-- button -->
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default"><i class="fa fa-trash"></i> Reset</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+                </div>
+                <?php echo form_close(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Tambah data -->
 
 
 <!-- Modal Edit -->

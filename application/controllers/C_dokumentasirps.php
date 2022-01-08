@@ -59,6 +59,54 @@ class C_dokumentasirps extends CI_Controller
         }
     }
 
+    public function add_data()
+    {
+        $this->_rules();
+
+        $nama_matakuliah = $this->input->post('nama_matakuliah');
+        $kode_matakuliah = $this->input->post('kode_matakuliah');
+        $semester = $this->input->post('semester');
+        $bobot_sks = $this->input->post('bobot_sks');
+        $dokumen = $_FILES['dokumen'];
+        if ($dokumen = '') {
+            # code...
+        } else {
+            $config['upload_path']          = './data/rps/';
+            $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf|doc';
+            // $config['max_size']             = 2048;
+            // $config['max_width']            = 1024;
+            // $config['max_height']           = 768;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('dokumen')) {
+                echo "Gagal Tambah Data";
+                die();
+            } else {
+                $dokumen = $this->upload->data('file_name');
+            }
+        }
+
+        $data = array(
+            'nama_matakuliah' => $nama_matakuliah,
+            'kode_matakuliah' => $kode_matakuliah,
+            'semester' => $semester,
+            'bobot_sks' => $bobot_sks,
+            'dokumen' => $dokumen
+        );
+
+        // Kirim data ke model
+        $this->M_dokumentasirps->insert_data($data, 'dokumentasirps_tbl');
+        // flashdata
+        $this->session->set_flashdata('pesan', '<div class="alert alert-succes alert-dismissible fade show" role="alert">
+        Data <strong>Berhasil</strong> Ditambahkan!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>');
+        redirect('C_dokumentasirps');
+    }
+
     public function edit($id_dokumentasirps)
     {
         $this->_rules();
@@ -68,8 +116,8 @@ class C_dokumentasirps extends CI_Controller
         } else {
             $data = array(
                 'id_dokumentasirps' => $id_dokumentasirps,
-                'kode_matakuliah' => $this->input->post('kode_matakuliah'),
                 'nama_matakuliah' => $this->input->post('nama_matakuliah'),
+                'kode_matakuliah' => $this->input->post('kode_matakuliah'),
                 'semester' => $this->input->post('semester'),
                 'bobot_sks' => $this->input->post('bobot_sks'),
                 'dokumen' => $this->input->post('dokumen')
