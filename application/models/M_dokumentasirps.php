@@ -13,6 +13,12 @@ class M_dokumentasirps extends CI_Model
         $this->db->insert($table, $data);
     }
 
+    // upload file
+    public function insert($data)
+    {
+        return $this->db->insert('dokumentasirps_tbl', $data);
+    }
+
     public function update_data($data, $table)
     {
         $this->db->where('id_dokumentasirps', $data['id_dokumentasirps']);

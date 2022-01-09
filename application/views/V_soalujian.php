@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        <a href="<?= base_url('C_soalujian/tambah_data'); ?>" class="btn btn-primary float-right">Tambah Data</a>
+        <!-- <a href="<?= base_url('C_soalujian/tambah_data'); ?>" class="btn btn-primary float-right">Tambah Data</a> -->
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
             Tambah Data
@@ -94,7 +94,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Dokumen</label>
-                    <input type="file" name="dokumen" class="form-control">
+                    <input type="file" name="userfile" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary">Reset</button>
@@ -150,7 +150,7 @@ foreach ($soalujian as $soal) : $no++; ?>
                     </div>
                     <div class="form-group">
                         <label for="">Dokumen</label>
-                        <input type="file" name="dokumen" class="form-control" size="20">
+                        <input type="file" name="editfile" class="form-control" size="20">
                     </div>
                     <div>
                         <p>Preview Dokumen</p>

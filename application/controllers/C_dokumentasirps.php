@@ -61,8 +61,35 @@ class C_dokumentasirps extends CI_Controller
 
     public function add_data()
     {
-        $this->_rules();
+        // $this->_rules();
+        $data['dokumentasirps'] = $this->M_dokumentasirps->get_data('dokumentasirps_tbl')->result();
 
+
+        $config['upload_path']          = './data/rps/';
+        $config['allowed_types']        = 'jpeg|jpg|png|pdf|doc|docx';
+        $config['max_size']             = 2048;
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('dokumen')) {
+            $error = array('error' => $this->upload->display_errors());
+            
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('V_dokumentasirps', $data, $error);
+            $this->load->view('templates/footer');
+        } else {
+            $upload_data = $this->upload->data();
+            $data = array(
+                'dokumen' => $upload_data['dokumen']
+            );
+
+            $this->M_dokumentasirps->insert($data);
+            redirect('C_dokumentasirps');
+        }
+        /*
         $nama_matakuliah = $this->input->post('nama_matakuliah');
         $kode_matakuliah = $this->input->post('kode_matakuliah');
         $semester = $this->input->post('semester');
@@ -105,6 +132,7 @@ class C_dokumentasirps extends CI_Controller
         </button>
       </div>');
         redirect('C_dokumentasirps');
+        */
     }
 
     public function edit($id_dokumentasirps)

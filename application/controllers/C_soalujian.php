@@ -36,7 +36,7 @@ class C_soalujian extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('dokumen')) {
+        if (!$this->upload->do_upload('userfile')) {
             echo "Gagal Upload";
         } else {
             $dokumen = $this->upload->data();
@@ -52,7 +52,7 @@ class C_soalujian extends CI_Controller
                 'kode_matakuliah' => $kode_matakuliah,
                 'semester' => $semester,
                 'jenis_soal' => $jenis_soal,
-                'dokumen' => $dokumen,
+                'dokumen' => $dokumen
             );
             // Maukasn ke tabel di database
             $this->db->insert('soalujian_tbl', $data);
@@ -99,7 +99,7 @@ class C_soalujian extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('dokumen')) {
+        if (!$this->upload->do_upload('editfile')) {
             $nama_matakuliah = $this->input->post('nama_matakuliah', TRUE);
             $kode_matakuliah = $this->input->post('kode_matakuliah', TRUE);
             $semester = $this->input->post('semester', TRUE);
