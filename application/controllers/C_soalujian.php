@@ -10,7 +10,7 @@ class C_soalujian extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('V_soalujian', $data);
+        $this->load->view('V_soalujian', $data, array('error' => ' '));
         $this->load->view('templates/footer');
     }
 
@@ -29,7 +29,7 @@ class C_soalujian extends CI_Controller
     public function proses_tambah_data()
     {
         $config['upload_path']          = './data/soalujian/';
-        $config['allowed_types']        = 'jpg|jpeg|png|pdf|doc|docx';
+        $config['allowed_types']        = 'jpeg|jpg|png|pdf|doc|docx';
         $config['max_size']             = 2048;
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;
@@ -37,7 +37,10 @@ class C_soalujian extends CI_Controller
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('userfile')) {
-            echo "Gagal Upload";
+            echo "Gagal Tambah Data";
+
+            // $error = array('error' => $this->upload->display_errors());
+            // $this->load->view('upload_form', $error);
         } else {
             $dokumen = $this->upload->data();
             $dokumen = $dokumen['file_name'];
@@ -46,7 +49,6 @@ class C_soalujian extends CI_Controller
             $semester = $this->input->post('semester', TRUE);
             $jenis_soal = $this->input->post('jenis_soal', TRUE);
 
-            // maukan data kedalam array
             $data = array(
                 'nama_matakuliah' => $nama_matakuliah,
                 'kode_matakuliah' => $kode_matakuliah,
@@ -54,26 +56,20 @@ class C_soalujian extends CI_Controller
                 'jenis_soal' => $jenis_soal,
                 'dokumen' => $dokumen
             );
-            // Maukasn ke tabel di database
+
+            // insert ke database
             $this->db->insert('soalujian_tbl', $data);
-            // alert
+            // Alert
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data <strong>Berhasil</strong> Ditambahkan!.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 
             redirect('C_soalujian');
+
+
+            // $data = array('upload_data' => $this->upload->data());
+            // $this->load->view('upload_success', $data);
         }
-
-
-        //     $this->M_soalujian->proses_tambah_data();
-        //     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        //     Data <strong>Berhasil</strong> Ditambahkan!.
-        //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        //       <span aria-hidden="true">&times;</span>
-        //     </button>
-        //   </div>');
-
-        //     redirect('C_soalujian');
     }
 
 
@@ -90,73 +86,6 @@ class C_soalujian extends CI_Controller
 
     public function proses_edit_data($id_soalujian)
     {
-        $id_soalujian = $this->input->post('id_soalujian');
-        $config['upload_path']          = './data/soalujian/';
-        $config['allowed_types']        = 'jpg|jpeg|png|pdf|doc|docx';
-        $config['max_size']             = 2048;
-        // $config['max_width']            = 1024;
-        // $config['max_height']           = 768;
-
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('editfile')) {
-            $nama_matakuliah = $this->input->post('nama_matakuliah', TRUE);
-            $kode_matakuliah = $this->input->post('kode_matakuliah', TRUE);
-            $semester = $this->input->post('semester', TRUE);
-            $jenis_soal = $this->input->post('jenis_soal', TRUE);
-
-            // maukan data kedalam array
-            $data = array(
-                'nama_matakuliah' => $nama_matakuliah,
-                'kode_matakuliah' => $kode_matakuliah,
-                'semester' => $semester,
-                'jenis_soal' => $jenis_soal
-            );
-
-            // Maukasn ke tabel di database
-            $this->db->where('id_soalujian', $id_soalujian);
-            $this->db->update('soalujian_tbl', $data);
-            // alert
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data <strong>Berhasil</strong> Diubah!.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-
-            redirect('C_soalujian');
-        } else {
-            $dokumen = $this->upload->data();
-            $dokumen = $dokumen['file_name'];
-            $nama_matakuliah = $this->input->post('nama_matakuliah', TRUE);
-            $kode_matakuliah = $this->input->post('kode_matakuliah', TRUE);
-            $semester = $this->input->post('semester', TRUE);
-            $jenis_soal = $this->input->post('jenis_soal', TRUE);
-
-            // maukan data kedalam array
-            $data = array(
-                'nama_matakuliah' => $nama_matakuliah,
-                'kode_matakuliah' => $kode_matakuliah,
-                'semester' => $semester,
-                'jenis_soal' => $jenis_soal,
-                'dokumen' => $dokumen,
-            );
-            // Maukasn ke tabel di database
-            $this->db->where('id_soalujian', $id_soalujian);
-            $this->db->update('soalujian_tbl', $data);
-            // alert
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data <strong>Berhasil</strong> Diubah!.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-
-            redirect('C_soalujian');
-        }
-
-        // Kirim data ke model
-        // $this->M_soalujian->proses_update_data($id_soalujian);
-        // alert
-        // $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        // Data <strong>Berhasil</strong> Diedit!.
-        // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-
-        // redirect('C_soalujian');
     }
 
 
