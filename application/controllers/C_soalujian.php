@@ -30,7 +30,7 @@ class C_soalujian extends CI_Controller
     {
         $config['upload_path']          = './data/soalujian/';
         $config['allowed_types']        = 'jpeg|jpg|png|pdf|doc|docx';
-        $config['max_size']             = 2048;
+        $config['max_size']             = 4096;     // 4mb
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;
 
@@ -84,8 +84,74 @@ class C_soalujian extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function proses_edit_data($id_soalujian)
+
+    public function proses_edit_data($id)
     {
+        $id = $this->input->post('id');
+
+        $config['upload_path']          = './data/soalujian/';
+        $config['allowed_types']        = 'jpeg|jpg|png|pdf|doc|docx';
+        $config['max_size']             = 4096;     // 4mb
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('editfile')) {
+            $nama_matakuliah = $this->input->post('nama_matakuliah1', TRUE);
+            $kode_matakuliah = $this->input->post('kode_matakuliah1', TRUE);
+            $semester = $this->input->post('semester1', TRUE);
+            $jenis_soal = $this->input->post('jenis_soal1', TRUE);
+
+            $data = array(
+                'nama_matakuliah' => $nama_matakuliah,
+                'kode_matakuliah' => $kode_matakuliah,
+                'semester' => $semester,
+                'jenis_soal' => $jenis_soal
+            );
+
+            // update data ke database
+            $this->db->where('id_soalujian', $id);
+            $this->db->update('soalujian_tbl', $data);
+            // Alert
+            $this->session->set_flashdata('pesan', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Data <strong>Berhasil</strong> Diubah!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+            redirect('C_soalujian');
+
+            // $error = array('error' => $this->upload->display_errors());
+            // $this->load->view('upload_form', $error);
+        } else {
+            $dokumen = $this->upload->data();
+            $dokumen = $dokumen['file_name'];
+            $nama_matakuliah = $this->input->post('nama_matakuliah1', TRUE);
+            $kode_matakuliah = $this->input->post('kode_matakuliah1', TRUE);
+            $semester = $this->input->post('semester1', TRUE);
+            $jenis_soal = $this->input->post('jenis_soal1', TRUE);
+
+            $data = array(
+                'nama_matakuliah' => $nama_matakuliah,
+                'kode_matakuliah' => $kode_matakuliah,
+                'semester' => $semester,
+                'jenis_soal' => $jenis_soal,
+                'dokumen' => $dokumen
+            );
+
+            // update ke database
+            $this->db->where('id_soalujian', $id);
+            $this->db->update('soalujian_tbl', $data);
+            // Alert
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data <strong>Berhasil</strong> Ditambahkan!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+            redirect('C_soalujian');
+
+
+            // $data = array('upload_data' => $this->upload->data());
+            // $this->load->view('upload_success', $data);
+        }
     }
 
 
