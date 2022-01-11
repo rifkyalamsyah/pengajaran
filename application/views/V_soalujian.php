@@ -65,7 +65,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?php echo form_open_multipart('C_soalujian/proses_tambah_data') ?>
+                <?php echo form_open_multipart('C_soalujian/proses_tambah_data'); ?>
                 <div class="form-group">
                     <label for="">Nama Matakuliah</label>
                     <input type="text" name="nama_matakuliah" class="form-control" required="">
@@ -121,7 +121,7 @@ foreach ($soalujian as $soal) : $no++; ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?php echo form_open_multipart('C_soalujian/proses_edit_data') ?>
+                    <?php echo form_open_multipart('C_soalujian/proses_edit_data'); ?>
                     <!-- hidden input -->
                     <input type="hidden" name="id_soalujian" value="<?= $soal['id_soalujian']; ?>">
                     <!-- end hidden input -->

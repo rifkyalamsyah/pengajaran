@@ -85,7 +85,7 @@ class C_soalujian extends CI_Controller
     }
 
 
-    public function proses_edit_data($id_soalujian)
+    public function proses_edit_data()
     {
         $id_soalujian = $this->input->post('id_soalujian');
 
@@ -113,6 +113,7 @@ class C_soalujian extends CI_Controller
             // update data ke database
             $this->db->where('id_soalujian', $id_soalujian);
             $this->db->update('soalujian_tbl', $data);
+            // $this->M_soalujian->proses_update_data($id_soalujian);
             // Alert
             $this->session->set_flashdata('pesan', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
             Data <strong>Berhasil</strong> Diubah!.
@@ -139,9 +140,9 @@ class C_soalujian extends CI_Controller
             );
 
             // update ke database
-            // $this->M_soalujian->proses_update_data($id);
             $this->db->where('id_soalujian', $id_soalujian);
             $this->db->update('soalujian_tbl', $data);
+            // $this->M_soalujian->proses_update_data($id);
             // Alert
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Data <strong>Berhasil</strong> Diubah!.
