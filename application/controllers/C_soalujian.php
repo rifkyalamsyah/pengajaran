@@ -29,7 +29,7 @@ class C_soalujian extends CI_Controller
     public function proses_tambah_data()
     {
         $config['upload_path']          = './data/soalujian/';
-        $config['allowed_types']        = 'jpeg|jpg|png|pdf|doc|docx';
+        $config['allowed_types']        = 'pdf|doc|docx|xls|xlsx';
         $config['max_size']             = 4096;     // 4mb
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;
@@ -85,12 +85,12 @@ class C_soalujian extends CI_Controller
     }
 
 
-    public function proses_edit_data($id)
+    public function proses_edit_data($id_soalujian)
     {
-        $id = $this->input->post('id');
+        $id_soalujian = $this->input->post('id_soalujian');
 
         $config['upload_path']          = './data/soalujian/';
-        $config['allowed_types']        = 'jpeg|jpg|png|pdf|doc|docx';
+        $config['allowed_types']        = 'pdf|doc|docx|xls|xlsx';
         $config['max_size']             = 4096;     // 4mb
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;
@@ -111,7 +111,7 @@ class C_soalujian extends CI_Controller
             );
 
             // update data ke database
-            $this->db->where('id_soalujian', $id);
+            $this->db->where('id_soalujian', $id_soalujian);
             $this->db->update('soalujian_tbl', $data);
             // Alert
             $this->session->set_flashdata('pesan', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -139,11 +139,12 @@ class C_soalujian extends CI_Controller
             );
 
             // update ke database
-            $this->db->where('id_soalujian', $id);
+            // $this->M_soalujian->proses_update_data($id);
+            $this->db->where('id_soalujian', $id_soalujian);
             $this->db->update('soalujian_tbl', $data);
             // Alert
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Data <strong>Berhasil</strong> Ditambahkan!.
+            Data <strong>Berhasil</strong> Diubah!.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 
             redirect('C_soalujian');

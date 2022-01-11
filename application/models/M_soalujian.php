@@ -34,7 +34,8 @@ class M_soalujian extends CI_Model
             "nama_matakuliah" => $this->input->post('nama_matakuliah'),
             "kode_matakuliah" => $this->input->post('kode_matakuliah'),
             "semester" => $this->input->post('semester'),
-            "jenis_soal" => $this->input->post('jenis_soal')
+            "jenis_soal" => $this->input->post('jenis_soal'),
+            "dokumen" => $this->input->post('editfile')
         ];
 
         $this->db->where('id_soalujian', $this->input->post('id_soalujian'));

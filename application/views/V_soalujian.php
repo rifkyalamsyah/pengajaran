@@ -98,7 +98,7 @@
                     <button type="reset" class="btn btn-secondary">Reset</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                <?php form_close(); ?>
+                <?php echo form_close(); ?>
             </div>
         </div>
     </div>
@@ -123,7 +123,7 @@ foreach ($soalujian as $soal) : $no++; ?>
                 <div class="modal-body">
                     <?php echo form_open_multipart('C_soalujian/proses_edit_data') ?>
                     <!-- hidden input -->
-                    <input type="hidden" name="id" value="<?= $soal['id_soalujian']; ?>">
+                    <input type="hidden" name="id_soalujian" value="<?= $soal['id_soalujian']; ?>">
                     <!-- end hidden input -->
                     <div class="form-group">
                         <label for="">Nama Matakuliah</label>
@@ -154,7 +154,7 @@ foreach ($soalujian as $soal) : $no++; ?>
                         <button type="reset" class="btn btn-secondary">Reset</button>
                         <button type="submit" class="btn btn-primary">save</button>
                     </div>
-                    <?php form_close(); ?>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>
