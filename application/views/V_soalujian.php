@@ -121,7 +121,7 @@ foreach ($soalujian as $soal) : $no++; ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?php echo form_open_multipart('C_soalujian/proses_edit_data'); ?>
+                    <?php echo form_open_multipart('C_soalujian/editUpload'); ?>
                     <!-- hidden input -->
                     <input type="hidden" name="id_soalujian" value="<?= $soal['id_soalujian']; ?>">
                     <!-- end hidden input -->

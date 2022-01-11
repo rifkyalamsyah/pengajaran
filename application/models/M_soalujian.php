@@ -59,4 +59,10 @@ class M_soalujian extends CI_Model
         $this->db->where('id_soalujian', $id_soalujian);
         return $this->db->get('soalujian_tbl');
     }
+
+    public function updateFile($id_soalujian, $data)
+    {
+        $this->db->where('id_soalujian', $id_soalujian);
+        return $this->db->update('soalujian_tbl', $data);
+    }
 }
