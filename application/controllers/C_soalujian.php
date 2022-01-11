@@ -18,7 +18,7 @@ class C_soalujian extends CI_Controller
     public function proses_tambah_data()
     {
         $config['upload_path']          = './data/soalujian/';
-        $config['allowed_types']        = 'pdf|doc|docx|xls|xlsx';
+        $config['allowed_types']        = 'pdf|doc|docx';
         $config['max_size']             = 4096;     // 4mb
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;
@@ -27,7 +27,6 @@ class C_soalujian extends CI_Controller
 
         if (!$this->upload->do_upload('userfile')) {
             echo "Gagal Tambah Data";
-
         } else {
             $dokumen = $this->upload->data();
             $dokumen = $dokumen['file_name'];
@@ -52,7 +51,6 @@ class C_soalujian extends CI_Controller
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 
             redirect('C_soalujian');
-
         }
     }
 
@@ -62,7 +60,7 @@ class C_soalujian extends CI_Controller
     //     $id_soalujian = $this->input->post('id_soalujian');
 
     //     $config['upload_path']          = './data/soalujian/';
-    //     $config['allowed_types']        = 'pdf|doc|docx|xls|xlsx';
+    //     $config['allowed_types']        = 'pdf|doc|docx';
     //     $config['max_size']             = 4096;     // 4mb
     //     // $config['max_width']            = 1024;
     //     // $config['max_height']           = 768;
@@ -118,7 +116,7 @@ class C_soalujian extends CI_Controller
     //         redirect('C_soalujian');
 
 
-            
+
     //     }
     // }
 
@@ -145,7 +143,7 @@ class C_soalujian extends CI_Controller
         if (is_readable($namafile) && unlink($namafile)) {
             $delete = $this->M_soalujian->delete_file($id_soalujian);
             // alert
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
             Data <strong>Berhasil</strong> Dihapus!.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -171,7 +169,7 @@ class C_soalujian extends CI_Controller
 
 
         $config['upload_path']          = './data/soalujian/';
-        $config['allowed_types']        = 'pdf|doc|docx|xls|xlsx';
+        $config['allowed_types']        = 'pdf|doc|docx';
         $config['max_size']             = 4096;     // 4mb
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;

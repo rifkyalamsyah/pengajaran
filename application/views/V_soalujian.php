@@ -5,7 +5,7 @@
     <div class="card-header">
         <!-- <a href="<?= base_url('C_soalujian/tambah_data'); ?>" class="btn btn-primary float-right">Tambah Data</a> -->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal"><i class="fa fa-plus"></i>
             Tambah Data
         </button>
     </div>
@@ -34,14 +34,12 @@
                         <td><?= $soal['semester']; ?></td>
                         <td><?= $soal['jenis_soal']; ?></td>
                         <td><?= $soal['dokumen']; ?></td>
-                        <!-- <td><img src="<?= base_url() . '/data/soalujian/' . $soal['dokumen'] ?>" alt="doc" width="100"></td> -->
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-modal<?= $soal['id_soalujian']; ?>">
-                                Edit
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-modal<?= $soal['id_soalujian']; ?>"><i class="fa fa-edit"></i>
+
                             </button>
-                            <!-- <a href="<?= base_url() ?>C_soalujian/edit_data/<?= $soal['id_soalujian']; ?>" class="btn btn-warning btn-sm">Edit</a> -->
-                            <a href="<?= base_url() ?>C_soalujian/delete_file/<?= $soal['id_soalujian']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Delete</a>
+                            <a href="<?= base_url() ?>C_soalujian/delete_file/<?= $soal['id_soalujian']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -68,11 +66,11 @@
                 <?php echo form_open_multipart('C_soalujian/proses_tambah_data'); ?>
                 <div class="form-group">
                     <label for="">Nama Matakuliah</label>
-                    <input type="text" name="nama_matakuliah" class="form-control" required="">
+                    <input type="text" name="nama_matakuliah" class="form-control" placeholder="Masukan Nama Matakuliah" required="">
                 </div>
                 <div class="form-group">
                     <label for="">Kode Matakuliah</label>
-                    <input type="text" name="kode_matakuliah" class="form-control" required="">
+                    <input type="text" name="kode_matakuliah" class="form-control" placeholder="Masukan Kode Matakuliah" required="">
                 </div>
                 <div class="form-group">
                     <label for="">Semester</label>
@@ -93,10 +91,12 @@
                 <div class="form-group">
                     <label for="">Upload Dokumen</label>
                     <input type="file" name="userfile" class="form-control" required="">
+                    <hr>
+                    <code>Jenis File yg dapat diupload *.pdf, *.doc, *.docx - Ukuran file max 4mb</code>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary"><i class="fa fa-trash"></i> Reset</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
                 </div>
                 <?php echo form_close(); ?>
             </div>
@@ -148,11 +148,13 @@ foreach ($soalujian as $soal) : $no++; ?>
                     <div class="form-group">
                         <label for="">Upload Dokumen</label>
                         <input type="file" name="editfile" class="form-control">
+                        <hr>
+                        <code>Jenis File yg dapat diupload *.pdf, *.doc, *.docx - Ukuran file max 4mb</code>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                        <button type="submit" class="btn btn-primary">save</button>
+                        <button type="reset" class="btn btn-secondary"><i class="fa fa-trash"></i> Reset</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
                     </div>
                     <?php echo form_close(); ?>
                 </div>
