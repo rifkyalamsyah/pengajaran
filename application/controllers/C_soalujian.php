@@ -14,16 +14,16 @@ class C_soalujian extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambah_data()
-    {
-        $data['title'] = "Tambah Data Soal Ujian";
-        $data['soalujian'] = $this->M_soalujian->get_data();
+    // public function tambah_data()
+    // {
+    //     $data['title'] = "Tambah Data Soal Ujian";
+    //     $data['soalujian'] = $this->M_soalujian->get_data();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('V_tambahdata2', $data);
-        $this->load->view('templates/footer');
-    }
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('V_tambahdata2', $data);
+    //     $this->load->view('templates/footer');
+    // }
 
 
     public function proses_tambah_data()
@@ -73,16 +73,16 @@ class C_soalujian extends CI_Controller
     }
 
 
-    public function edit_data($id_soalujian)
-    {
-        $data['title'] = "Edit Data Soal Ujian";
-        $data['soalujian'] = $this->M_soalujian->fetch_data($id_soalujian);
+    // public function edit_data($id_soalujian)
+    // {
+    //     $data['title'] = "Edit Data Soal Ujian";
+    //     $data['soalujian'] = $this->M_soalujian->fetch_data($id_soalujian);
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('V_editdata2', $data);
-        $this->load->view('templates/footer');
-    }
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('V_editdata2', $data);
+    //     $this->load->view('templates/footer');
+    // }
 
 
     public function proses_edit_data()
@@ -157,15 +157,39 @@ class C_soalujian extends CI_Controller
     }
 
 
-    public function delete_data($id_soalujian)
+    // public function delete_data($id_soalujian)
+    // {
+    //     $this->M_soalujian->delete_data($id_soalujian);
+    //     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    //     Data <strong>Berhasil</strong> Dihapus!.
+    //     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //       <span aria-hidden="true">&times;</span>
+    //     </button>
+    //   </div>');
+
+    //     redirect('C_soalujian');
+    // }
+
+
+    public function delete_file($id_soalujian)
     {
-        $this->M_soalujian->delete_data($id_soalujian);
-        $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Data <strong>Berhasil</strong> Dihapus!.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>');
+        $data = $this->M_soalujian->getDataById($id_soalujian)->row();
+        $namafile = './data/soalujian/' . $data->dokumen;
+
+        if (is_readable($namafile) && unlink($namafile)) {
+            $delete = $this->M_soalujian->delete_file($id_soalujian);
+            // alert
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data <strong>Berhasil</strong> Dihapus!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+
+            redirect('C_soalujian');
+        } else {
+            echo "Gagal Hapus Data";
+        }
 
         redirect('C_soalujian');
     }

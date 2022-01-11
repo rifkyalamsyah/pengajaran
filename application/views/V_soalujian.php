@@ -41,7 +41,7 @@
                                 Edit
                             </button>
                             <!-- <a href="<?= base_url() ?>C_soalujian/edit_data/<?= $soal['id_soalujian']; ?>" class="btn btn-warning btn-sm">Edit</a> -->
-                            <a href="<?= base_url() ?>C_soalujian/delete_data/<?= $soal['id_soalujian']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="<?= base_url() ?>C_soalujian/delete_file/<?= $soal['id_soalujian']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

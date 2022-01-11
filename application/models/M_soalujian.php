@@ -47,4 +47,16 @@ class M_soalujian extends CI_Model
         $this->db->where('id_soalujian', $id_soalujian);
         $this->db->delete('soalujian_tbl');
     }
+
+    public function delete_file($id_soalujian)
+    {
+        $this->db->where('id_soalujian', $id_soalujian);
+        return $this->db->delete('soalujian_tbl');
+    }
+
+    public function getDataById($id_soalujian)
+    {
+        $this->db->where('id_soalujian', $id_soalujian);
+        return $this->db->get('soalujian_tbl');
+    }
 }
