@@ -37,7 +37,7 @@
                         <!-- <td><img src="<?= base_url() . '/data/soalujian/' . $soal['dokumen'] ?>" alt="doc" width="100"></td> -->
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit-modal<?= $soal['id_soalujian']; ?>">
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-modal<?= $soal['id_soalujian']; ?>">
                                 Edit
                             </button>
                             <!-- <a href="<?= base_url() ?>C_soalujian/edit_data/<?= $soal['id_soalujian']; ?>" class="btn btn-warning btn-sm">Edit</a> -->

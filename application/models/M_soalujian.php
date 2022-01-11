@@ -28,25 +28,25 @@ class M_soalujian extends CI_Model
     }
 
     // Proses update data
-    public function proses_update_data($data, $table)
-    {
-        $data = [
-            "nama_matakuliah" => $this->input->post('nama_matakuliah'),
-            "kode_matakuliah" => $this->input->post('kode_matakuliah'),
-            "semester" => $this->input->post('semester'),
-            "jenis_soal" => $this->input->post('jenis_soal'),
-            "dokumen" => $this->input->post('editfile')
-        ];
+    // public function proses_update_data($data, $table)
+    // {
+    //     $data = [
+    //         "nama_matakuliah" => $this->input->post('nama_matakuliah'),
+    //         "kode_matakuliah" => $this->input->post('kode_matakuliah'),
+    //         "semester" => $this->input->post('semester'),
+    //         "jenis_soal" => $this->input->post('jenis_soal'),
+    //         "dokumen" => $this->input->post('editfile')
+    //     ];
 
-        $this->db->where('id_soalujian', $this->input->post('id_soalujian'));
-        $this->db->update('soalujian_tbl', $data);
-    }
+    //     $this->db->where('id_soalujian', $this->input->post('id_soalujian'));
+    //     $this->db->update('soalujian_tbl', $data);
+    // }
 
-    public function delete_data($id_soalujian)
-    {
-        $this->db->where('id_soalujian', $id_soalujian);
-        $this->db->delete('soalujian_tbl');
-    }
+    // public function delete_data($id_soalujian)
+    // {
+    //     $this->db->where('id_soalujian', $id_soalujian);
+    //     $this->db->delete('soalujian_tbl');
+    // }
 
     public function delete_file($id_soalujian)
     {
@@ -54,11 +54,13 @@ class M_soalujian extends CI_Model
         return $this->db->delete('soalujian_tbl');
     }
 
+
     public function getDataById($id_soalujian)
     {
         $this->db->where('id_soalujian', $id_soalujian);
         return $this->db->get('soalujian_tbl');
     }
+
 
     public function updateFile($id_soalujian, $data)
     {
