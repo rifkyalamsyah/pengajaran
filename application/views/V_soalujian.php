@@ -3,7 +3,6 @@
 
 <div class="card">
     <div class="card-header">
-        <!-- <a href="<?= base_url('C_soalujian/tambah_data'); ?>" class="btn btn-primary float-right">Tambah Data</a> -->
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal"><i class="fa fa-plus"></i>
             Tambah Data
@@ -83,7 +82,7 @@
                 <div class="form-group">
                     <label for="">Jenis Soal</label>
                     <select class="form-control" name="jenis_soal" required="">
-                        <option disabled selected>Jenis Soal</option>
+                        <option disabled selected>Pilih Jenis Soal</option>
                         <option value="Individu">Individu</option>
                         <option value="Final Project">Final Project</option>
                     </select>

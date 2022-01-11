@@ -3,31 +3,29 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_dokumentasirps extends CI_Model
 {
-    public function get_data($table)
+    public function get_data()
     {
-        return $this->db->get($table);
+        return $this->db->get('dokumentasirps_tbl')->result_array();
     }
 
-    public function insert_data($data, $table)
+
+    public function delete_file($id_dokumentasirps)
     {
-        $this->db->insert($table, $data);
+        $this->db->where('id_dokumentasirps', $id_dokumentasirps);
+        return $this->db->delete('dokumentasirps_tbl');
     }
 
-    // upload file
-    public function insert($data)
+
+    public function getDataById($id_dokumentasirps)
     {
-        return $this->db->insert('dokumentasirps_tbl', $data);
+        $this->db->where('id_dokumentasirps', $id_dokumentasirps);
+        return $this->db->get('dokumentasirps_tbl');
     }
 
-    public function update_data($data, $table)
-    {
-        $this->db->where('id_dokumentasirps', $data['id_dokumentasirps']);
-        $this->db->update($table, $data);
-    }
 
-    public function delete($where, $table)
+    public function update_file($id_dokumentasirps, $data)
     {
-        $this->db->where($where);
-        $this->db->delete($table);
+        $this->db->where('id_dokumentasirps', $id_dokumentasirps);
+        return $this->db->update('dokumentasirps_tbl', $data);
     }
 }
