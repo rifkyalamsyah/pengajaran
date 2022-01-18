@@ -34,7 +34,7 @@
                         <td><a href="<?= base_url(); ?>data/rps/<?= $doc['dokumen']; ?>" target="blank"><?= $doc['dokumen']; ?></a></td>
                         <td>
                             <!-- Button Download -->
-                            <a href="<?= base_url(); ?>data/rps/<?= $doc['dokumen']; ?>" class="btn btn-success btn-sm" onclick="return confirm('Apakah anda yakin ingin mendownload file ini?')" target="blank"><i class="fa fa-download"></i></a>
+                            <a href="<?= base_url(); ?>data/rps/<?= $doc['dokumen']; ?>" class="btn btn-success btn-sm" target="blank"><i class="fa fa-download"></i></a>
                             <!-- Button Edit trigger modal -->
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-modal<?= $doc['id_dokumentasirps']; ?>"><i class="fa fa-edit"></i>
                             </button>
