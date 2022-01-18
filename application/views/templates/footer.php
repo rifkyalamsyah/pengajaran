@@ -6,9 +6,9 @@
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.0.5
+        <b>Kelompok</b> 9
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2021-2022 <a href="https://d3ti.amikom.ac.id/" target="blank">D3 Teknik Informatika - Universitas Amikom Yogyakarta</a>.</strong> All rights
     reserved.
 </footer>
 

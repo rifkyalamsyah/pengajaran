@@ -31,11 +31,12 @@
                         <td><?= $doc['nama_matakuliah']; ?></td>
                         <td><?= $doc['semester']; ?></td>
                         <td><?= $doc['bobot_sks']; ?></td>
-                        <td><?= $doc['dokumen']; ?></td>
+                        <td><a href="<?= base_url(); ?>data/rps/<?= $doc['dokumen']; ?>" target="blank"><?= $doc['dokumen']; ?></a></td>
                         <td>
-                            <!-- Button trigger modal -->
+                            <!-- Button Download -->
+                            <a href="<?= base_url(); ?>data/rps/<?= $doc['dokumen']; ?>" class="btn btn-success btn-sm" onclick="return confirm('Apakah anda yakin ingin mendownload file ini?')" target="blank"><i class="fa fa-download"></i></a>
+                            <!-- Button Edit trigger modal -->
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-modal<?= $doc['id_dokumentasirps']; ?>"><i class="fa fa-edit"></i>
-
                             </button>
                             <!-- button Delete -->
                             <a href="<?= base_url() ?>C_dokumentasirps/delete_data/<?= $doc['id_dokumentasirps']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i></a>
@@ -132,15 +133,25 @@ foreach ($dokumentasirps as $doc) : $no++; ?>
                     </div>
                     <div class="form-group">
                         <label for="">Semester</label>
-                        <input type="text" name="semester1" class="form-control" value="<?= $doc['semester']; ?>">
+                        <!-- hidden input -->
+                        <input type="hidden" name="semester1" class="form-control" value="<?= $doc['semester']; ?>">
+                        <!-- end hidden input -->
+                        <select class="form-control" name="semester1">
+                            <option disabled selected><?= $doc['semester']; ?></option>
+                            <option value="Ganjil">Ganjil</option>
+                            <option value="Genap">Genap</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="">Bobot SKS</label>
-                        <input type="text" name="bobot_sks1" class="form-control" value="<?= $doc['bobot_sks']; ?>">
-                    </div>
-                    <div>
-                        <label for="">Preview File Dokumen</label>
-                        <p><?= $doc['dokumen']; ?></p>
+                        <!-- hidden input -->
+                        <input type="hidden" name="bobot_sks1" class="form-control" value="<?= $doc['bobot_sks']; ?>">
+                        <!-- end hidden input -->
+                        <select class="form-control" name="bobot_sks1">
+                            <option disabled selected><?= $doc['bobot_sks']; ?></option>
+                            <option value="2 SKS">2 SKS</option>
+                            <option value="4 SKS">4 SKS</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="">Upload Dokumen</label>

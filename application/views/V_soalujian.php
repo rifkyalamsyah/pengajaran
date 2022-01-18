@@ -14,6 +14,7 @@
             <thead>
                 <tr>
                     <th>NO</th>
+                    <th>Nama Dosen</th>
                     <th>Kode Matakuliah</th>
                     <th>Nama Matakuliah</th>
                     <th>Semester</th>
@@ -28,16 +29,19 @@
                 foreach ($soalujian as $soal) :  ?>
                     <tr>
                         <td><?= $no++; ?></td>
+                        <td><?= $soal['nama_dosen']; ?></td>
                         <td><?= $soal['kode_matakuliah']; ?></td>
                         <td><?= $soal['nama_matakuliah']; ?></td>
                         <td><?= $soal['semester']; ?></td>
                         <td><?= $soal['jenis_soal']; ?></td>
-                        <td><?= $soal['dokumen']; ?></td>
+                        <td><a href="<?= base_url(); ?>data/soalujian/<?= $soal['dokumen']; ?>" target="blank"><?= $soal['dokumen']; ?></a></td>
                         <td>
-                            <!-- Button trigger modal -->
+                            <!-- Button Download -->
+                            <a href="<?= base_url(); ?>data/soalujian/<?= $soal['dokumen']; ?>" class="btn btn-success btn-sm" target="blank"><i class="fa fa-download"></i></a>
+                            <!-- Button Edit trigger modal -->
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-modal<?= $soal['id_soalujian']; ?>"><i class="fa fa-edit"></i>
-
                             </button>
+                            <!-- Buton Delete -->
                             <a href="<?= base_url() ?>C_soalujian/delete_file/<?= $soal['id_soalujian']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
@@ -63,6 +67,10 @@
             </div>
             <div class="modal-body">
                 <?php echo form_open_multipart('C_soalujian/proses_tambah_data'); ?>
+                <div class="form-group">
+                    <label for="">Nama Dosen</label>
+                    <input type="text" name="nama_dosen" class="form-control" placeholder="Masukan Nama Dosen" required="">
+                </div>
                 <div class="form-group">
                     <label for="">Nama Matakuliah</label>
                     <input type="text" name="nama_matakuliah" class="form-control" placeholder="Masukan Nama Matakuliah" required="">
@@ -125,6 +133,10 @@ foreach ($soalujian as $soal) : $no++; ?>
                     <input type="hidden" name="id_soalujian" value="<?= $soal['id_soalujian']; ?>">
                     <!-- end hidden input -->
                     <div class="form-group">
+                        <label for="">Nama Dosen</label>
+                        <input type="text" name="nama_dosen1" class="form-control" value="<?= $soal['nama_dosen']; ?>">
+                    </div>
+                    <div class="form-group">
                         <label for="">Nama Matakuliah</label>
                         <input type="text" name="nama_matakuliah1" class="form-control" value="<?= $soal['nama_matakuliah']; ?>">
                     </div>
@@ -134,15 +146,25 @@ foreach ($soalujian as $soal) : $no++; ?>
                     </div>
                     <div class="form-group">
                         <label for="">Semester</label>
-                        <input type="text" name="semester1" class="form-control" value="<?= $soal['semester']; ?>">
+                        <!-- hidden input -->
+                        <input type="hidden" name="semester1" class="form-control" value="<?= $soal['semester']; ?>">
+                        <!-- end hidden input -->
+                        <select class="form-control" name="semester1" required="">
+                            <option disabled selected><?= $soal['semester']; ?></option>
+                            <option value="Ganjil">Ganjil</option>
+                            <option value="Genap">Genap</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="">Jenis Soal</label>
-                        <input type="text" name="jenis_soal1" class="form-control" value="<?= $soal['jenis_soal']; ?>">
-                    </div>
-                    <div>
-                        <label for="">Preview File Dokumen</label>
-                        <p><?= $soal['dokumen']; ?></p>
+                        <!-- hidden input -->
+                        <input type="hidden" name="jenis_soal1" class="form-control" value="<?= $soal['jenis_soal']; ?>">
+                        <!-- end hidden input -->
+                        <select class="form-control" name="jenis_soal1" required="">
+                            <option disabled selected><?= $soal['jenis_soal']; ?></option>
+                            <option value="Individu">Individu</option>
+                            <option value="Final Project">Final Project</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="">Upload Dokumen</label>

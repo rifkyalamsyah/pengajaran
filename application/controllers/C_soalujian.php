@@ -36,12 +36,14 @@ class C_soalujian extends CI_Controller
         } else {
             $dokumen = $this->upload->data();
             $dokumen = $dokumen['file_name'];
+            $nama_dosen = $this->input->post('nama_dosen', TRUE);
             $nama_matakuliah = $this->input->post('nama_matakuliah', TRUE);
             $kode_matakuliah = $this->input->post('kode_matakuliah', TRUE);
             $semester = $this->input->post('semester', TRUE);
             $jenis_soal = $this->input->post('jenis_soal', TRUE);
 
             $data = array(
+                'nama_dosen' => $nama_dosen,
                 'nama_matakuliah' => $nama_matakuliah,
                 'kode_matakuliah' => $kode_matakuliah,
                 'semester' => $semester,
@@ -183,12 +185,14 @@ class C_soalujian extends CI_Controller
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('editfile')) {
+            $nama_dosen = $this->input->post('nama_dosen1', TRUE);
             $nama_matakuliah = $this->input->post('nama_matakuliah1', TRUE);
             $kode_matakuliah = $this->input->post('kode_matakuliah1', TRUE);
             $semester = $this->input->post('semester1', TRUE);
             $jenis_soal = $this->input->post('jenis_soal1', TRUE);
 
             $data = array(
+                'nama_dosen' => $nama_dosen,
                 'nama_matakuliah' => $nama_matakuliah,
                 'kode_matakuliah' => $kode_matakuliah,
                 'semester' => $semester,
@@ -221,12 +225,14 @@ class C_soalujian extends CI_Controller
                 $dokumen = $this->upload->data();
                 $dokumen = $dokumen['file_name'];
 
+                $nama_dosen = $this->input->post('nama_dosen1', TRUE);
                 $nama_matakuliah = $this->input->post('nama_matakuliah1', TRUE);
                 $kode_matakuliah = $this->input->post('kode_matakuliah1', TRUE);
                 $semester = $this->input->post('semester1', TRUE);
                 $jenis_soal = $this->input->post('jenis_soal1', TRUE);
 
                 $data = array(
+                    'nama_dosen' => $nama_dosen,
                     'nama_matakuliah' => $nama_matakuliah,
                     'kode_matakuliah' => $kode_matakuliah,
                     'semester' => $semester,
